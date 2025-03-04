@@ -18,7 +18,7 @@ export default function Blockchain() {
    * Lecture du solde du contrat HETIC ERC20.
    * Cette lecture permet de récupérer le solde du contrat HETIC ERC20 pour l'adresse connectée.
    */
-  const { data: balance } = useReadContract({
+  const { data: balance, refetch } = useReadContract({
     abi: HETIC_ABI, // ABI du contrat HETIC ERC20
     functionName: "balanceOf", // Nom de la fonction à appeler
     address: HETIC_ADDRESS, // Adresse du contrat HETIC ERC20
@@ -46,7 +46,17 @@ export default function Blockchain() {
       </h1>
       <ConnectButton />
       {isConnected ? (
-        <p className="text-lg text-gray-500">Balance: {balance?.toString()}</p>
+        <div className="flex gap-4 items-center justify-center">
+          <p className="text-lg text-gray-500">
+            Balance: {balance?.toString()}
+          </p>
+          <button
+            onClick={() => refetch()}
+            className="mt-4 bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors mb-4"
+          >
+            Refresh
+          </button>
+        </div>
       ) : (
         <p className="text-lg text-gray-500">
           Connectez-vous avec votre wallet
