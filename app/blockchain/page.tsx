@@ -17,6 +17,7 @@ export default function Blockchain() {
   /**
    * Lecture du solde du contrat HETIC ERC20.
    * Cette lecture permet de récupérer le solde du contrat HETIC ERC20 pour l'adresse connectée.
+   * @dev refetch permet de rafraîchir le solde du contrat HETIC ERC20.
    */
   const { data: balance, refetch } = useReadContract({
     abi: HETIC_ABI, // ABI du contrat HETIC ERC20
